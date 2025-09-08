@@ -159,9 +159,15 @@
             @endphp
             
             @if($startVerse > 1)
+                @php $hasUrl1 = in_array(1, $savedVerses); @endphp
                 <a href="{{ route('audio.form.ayah', [$type, $currentSurah, 1]) }}" 
-                   class="p-2 text-center rounded-lg border-2 transition-all duration-200 bg-gray-50 hover:bg-blue-50 border-gray-200 hover:border-blue-300">
+                   class="p-2 text-center rounded-lg border-2 transition-all duration-200 relative
+                   {{ $hasUrl1 ? 'bg-green-100 border-green-300 text-green-700 hover:bg-green-200' : 
+                      'bg-gray-50 hover:bg-blue-50 border-gray-200 hover:border-blue-300' }}">
                     1
+                    @if($hasUrl1)
+                        <span class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+                    @endif
                 </a>
                 @if($startVerse > 2)
                     <div class="p-2 text-center text-gray-500">...</div>
@@ -169,9 +175,19 @@
             @endif
             
             @for($i = $startVerse; $i <= $endVerse; $i++)
+                @php
+                    $hasUrl = in_array($i, $savedVerses);
+                    $isCurrent = $i == $currentAyah;
+                @endphp
                 <a href="{{ route('audio.form.ayah', [$type, $currentSurah, $i]) }}" 
-                   class="p-2 text-center rounded-lg border-2 transition-all duration-200 {{ $i == $currentAyah ? 'bg-blue-500 text-white border-blue-500' : 'bg-gray-50 hover:bg-blue-50 border-gray-200 hover:border-blue-300' }}">
+                   class="p-2 text-center rounded-lg border-2 transition-all duration-200 relative
+                   {{ $isCurrent ? 'bg-blue-500 text-white border-blue-500' : 
+                      ($hasUrl ? 'bg-green-100 border-green-300 text-green-700 hover:bg-green-200' : 
+                       'bg-gray-50 hover:bg-blue-50 border-gray-200 hover:border-blue-300') }}">
                     {{ $i }}
+                    @if($hasUrl && !$isCurrent)
+                        <span class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+                    @endif
                 </a>
             @endfor
             
@@ -179,9 +195,15 @@
                 @if($endVerse < $maxAyahs - 1)
                     <div class="p-2 text-center text-gray-500">...</div>
                 @endif
+                @php $hasUrlLast = in_array($maxAyahs, $savedVerses); @endphp
                 <a href="{{ route('audio.form.ayah', [$type, $currentSurah, $maxAyahs]) }}" 
-                   class="p-2 text-center rounded-lg border-2 transition-all duration-200 bg-gray-50 hover:bg-blue-50 border-gray-200 hover:border-blue-300">
+                   class="p-2 text-center rounded-lg border-2 transition-all duration-200 relative
+                   {{ $hasUrlLast ? 'bg-green-100 border-green-300 text-green-700 hover:bg-green-200' : 
+                      'bg-gray-50 hover:bg-blue-50 border-gray-200 hover:border-blue-300' }}">
                     {{ $maxAyahs }}
+                    @if($hasUrlLast)
+                        <span class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+                    @endif
                 </a>
             @endif
         </div>

@@ -172,6 +172,13 @@ class QuranXmlController extends Controller
             'ayah' => $ayah
         ])->first();
 
+        // Get all saved verses for this surah to show indicators
+        $savedVerses = QuranXml::where([
+            'type' => $type,
+            'media_type' => 'audio',
+            'surah' => $surah
+        ])->pluck('ayah')->toArray();
+
         return view('audio.form-with-navigation', [
             'type' => $type,
             'title' => $this->cardTitles[$type],
@@ -179,7 +186,8 @@ class QuranXmlController extends Controller
             'currentSurah' => $surah,
             'currentAyah' => $ayah,
             'existingUrl' => $existingEntry ? $existingEntry->link : '',
-            'maxAyahs' => $this->surahs[$surah]['ayahs']
+            'maxAyahs' => $this->surahs[$surah]['ayahs'],
+            'savedVerses' => $savedVerses
         ]);
     }
 
@@ -214,6 +222,13 @@ class QuranXmlController extends Controller
             'ayah' => $ayah
         ])->first();
 
+        // Get all saved verses for this surah to show indicators
+        $savedVerses = QuranXml::where([
+            'type' => $type,
+            'media_type' => 'video',
+            'surah' => $surah
+        ])->pluck('ayah')->toArray();
+
         return view('video.form-with-navigation', [
             'type' => $type,
             'title' => $this->cardTitles[$type],
@@ -221,7 +236,8 @@ class QuranXmlController extends Controller
             'currentSurah' => $surah,
             'currentAyah' => $ayah,
             'existingUrl' => $existingEntry ? $existingEntry->link : '',
-            'maxAyahs' => $this->surahs[$surah]['ayahs']
+            'maxAyahs' => $this->surahs[$surah]['ayahs'],
+            'savedVerses' => $savedVerses
         ]);
     }
 
@@ -291,6 +307,10 @@ class QuranXmlController extends Controller
                 $nextSurah = $surahIndex - 1;
                 $nextAyah = $this->surahs[$nextSurah]['ayahs'];
             }
+        } elseif ($action === 'stay') {
+            // Stay on the same verse - don't navigate
+            return redirect()->route('audio.form.ayah', [$type, $surahIndex, $ayahIndex])
+                            ->with('success', 'URL saved successfully!');
         }
 
         return redirect()->route('audio.form.ayah', [$type, $nextSurah, $nextAyah])
@@ -350,6 +370,10 @@ class QuranXmlController extends Controller
                 $nextSurah = $surahIndex - 1;
                 $nextAyah = $this->surahs[$nextSurah]['ayahs'];
             }
+        } elseif ($action === 'stay') {
+            // Stay on the same verse - don't navigate
+            return redirect()->route('video.form.ayah', [$type, $surahIndex, $ayahIndex])
+                            ->with('success', 'URL saved successfully!');
         }
 
         return redirect()->route('video.form.ayah', [$type, $nextSurah, $nextAyah])
