@@ -3,31 +3,32 @@
 @section('title', 'Audio File - ' . $title)
 
 @section('content')
-<div class="max-w-4xl mx-auto">
+<div class="max-w-2xl mx-auto">
     <!-- Back Button -->
     <div class="mb-6">
-                    <a href="{{ route('home') }}" class="inline-flex items-center px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors">
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <a href="{{ route('home') }}" class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 transition-colors">
+            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
             Back to Home
         </a>
     </div>
 
-    <!-- Form Card -->
-    <div class="bg-white rounded-2xl shadow-xl p-8">
-        <div class="text-center mb-8">
-            <h1 class="text-2xl font-bold text-gray-800 mb-4 leading-relaxed">{{ $title }}</h1>
-            <p class="text-gray-600 leading-relaxed">Create XML file for audio content</p>
-        </div>
+    <!-- Page Header -->
+    <div class="mb-8">
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{{ $title }}</h1>
+        <p class="text-gray-600">Select a Surah to start adding audio URLs</p>
+    </div>
 
+    <!-- Form Card -->
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
         <div class="space-y-6">
             <!-- Surah Selection -->
             <div>
-                <label for="surah" class="block text-lg font-semibold text-gray-700 mb-3">Select Surah:</label>
+                <label for="surah" class="block text-sm font-medium text-gray-700 mb-2">Select Surah</label>
                 <select name="surah" id="surah" required
-                        class="w-full p-4 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring focus:ring-blue-200 text-lg">
-                    <option value="">Select a Surah</option>
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-sm bg-white">
+                    <option value="">Choose a Surah...</option>
                     @foreach($surahs as $index => $surah)
                         <option value="{{ $index }}" {{ old('surah') == $index ? 'selected' : '' }}>
                             {{ $index }}. {{ $surah['name'] }} ({{ $surah['pashto'] }}) - {{ $surah['ayahs'] }} verses
@@ -37,10 +38,10 @@
             </div>
 
             <!-- Start Button -->
-            <div class="text-center pt-4">
+            <div>
                 <button id="startBtn" disabled
-                        class="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
-                    Start - Add Verse URLs
+                        class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-green-600">
+                    Continue
                 </button>
             </div>
         </div>
