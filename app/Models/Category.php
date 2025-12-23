@@ -59,6 +59,37 @@ class Category extends Model
     }
 
     /**
+     * Get the display name (English by default).
+     */
+    public function getNameAttribute(): string
+    {
+        return $this->name_english ?? 'Unnamed Category';
+    }
+
+    /**
+     * Get formatted display name with all languages.
+     */
+    public function getDisplayNameAttribute(): string
+    {
+        $names = [];
+        if ($this->name_english) $names[] = $this->name_english;
+        if ($this->name_urdu) $names[] = $this->name_urdu;
+        if ($this->name_arabic) $names[] = $this->name_arabic;
+        if ($this->name_pashto) $names[] = $this->name_pashto;
+        
+        return implode(' • ', $names);
+    }
+
+    /**
+     * Get icon emoji/character.
+     */
+    public function getIconAttribute(): string
+    {
+        // Return empty string for now, or first character of icon if exists
+        return '';
+    }
+
+    /**
      * Scope a query to only include active categories.
      */
     public function scopeActive($query)

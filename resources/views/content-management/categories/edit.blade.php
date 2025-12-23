@@ -125,16 +125,6 @@
                     @enderror
                 </div>
 
-                <!-- Color -->
-                <div>
-                    <label for="color" class="block text-sm font-medium text-gray-700 mb-2">Color</label>
-                    <input type="color" id="color" name="color" value="{{ old('color', $category->color) }}"
-                        class="w-full h-12 px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 @error('color') border-red-500 @enderror">
-                    @error('color')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-
                 <!-- Order -->
                 <div>
                     <label for="order" class="block text-sm font-medium text-gray-700 mb-2">Display Order</label>

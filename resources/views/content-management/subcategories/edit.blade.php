@@ -27,17 +27,25 @@
                 <div>
                     <label for="category_id" class="block text-sm font-medium text-gray-700 mb-2">Parent Category *</label>
                     <select id="category_id" name="category_id" required
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 @error('category_id') border-red-500 @enderror">
-                        <option value="">Select a category</option>
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 bg-white text-gray-900 font-medium @error('category_id') border-red-500 @enderror">
+                        <option value="" class="text-gray-500">Select a category</option>
                         @foreach($categories as $category)
-                            <option value="{{ $category->id }}" {{ old('category_id', $subcategory->category_id) == $category->id ? 'selected' : '' }}>
-                                {{ $category->icon }} {{ $category->name }}
+                            <option value="{{ $category->id }}" 
+                                    {{ old('category_id', $subcategory->category_id) == $category->id ? 'selected' : '' }}
+                                    class="py-2 text-gray-900 font-medium">
+                                {{ $category->name_english }}
+                                @if($category->name_urdu)
+                                    • {{ $category->name_urdu }}
+                                @endif
                             </option>
                         @endforeach
                     </select>
                     @error('category_id')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
+                    <p class="mt-2 text-xs text-gray-500">
+                        Select the main category this subcategory belongs to
+                    </p>
                 </div>
 
                 <!-- Name -->
