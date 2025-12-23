@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\QuranApiController;
+use App\Http\Controllers\Api\ContentApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,8 @@ use App\Http\Controllers\Api\QuranApiController;
 |
 */
 
-Route::middleware('api')->group(function () {
+Route::middleware(['api', 'api.key'])->group(function () {
+    // Quran API Routes (د آیات فایدی، د آیات تفسیر، د آیه لغات)
     // Get all sections data for a specific ayah
     Route::get('/ayah/{surah}/{ayah}', [QuranApiController::class, 'getAyahData']);
     
@@ -33,4 +35,20 @@ Route::middleware('api')->group(function () {
     
     // Get specific surah info
     Route::get('/surah/{surah}', [QuranApiController::class, 'getSurahInfo']);
+
+    // Content Management API Routes
+    // Get all categories (main cards for homepage)
+    Route::get('/categories', [ContentApiController::class, 'getCategories']);
+    
+    // Get single category with subcategories
+    Route::get('/categories/{id}', [ContentApiController::class, 'getCategory']);
+    
+    // Get subcategory with contents
+    Route::get('/subcategories/{id}', [ContentApiController::class, 'getSubcategory']);
+    
+    // Get single content item
+    Route::get('/contents/{id}', [ContentApiController::class, 'getContent']);
+    
+    // Search content
+    Route::get('/search', [ContentApiController::class, 'search']);
 });

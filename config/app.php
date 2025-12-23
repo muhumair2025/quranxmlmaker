@@ -56,6 +56,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | API Key
+    |--------------------------------------------------------------------------
+    |
+    | This key is used for API authentication. Mobile apps must include this
+    | key in the X-API-Key header when making requests to the API endpoints.
+    |
+    */
+
+    'api_key' => env('API_KEY'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
     |

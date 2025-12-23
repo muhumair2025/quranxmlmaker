@@ -16,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'verify.otp' => \App\Http\Middleware\VerifyOtp::class,
             'prevent.registration' => \App\Http\Middleware\PreventRegistrationIfUserExists::class,
             'admin' => \App\Http\Middleware\EnsureUserIsAdmin::class,
+            'api.key' => \App\Http\Middleware\VerifyApiKey::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

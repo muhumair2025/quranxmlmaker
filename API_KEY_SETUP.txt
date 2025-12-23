@@ -1,0 +1,93 @@
+═══════════════════════════════════════════════════════════════
+    API KEY AUTHENTICATION - SETUP INSTRUCTIONS
+═══════════════════════════════════════════════════════════════
+
+YOUR GENERATED API KEY:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+API_KEY=de9cc0578682fe54e2b7fc4702947a5080b57ce69bb002f45f18f688d283e4a4
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️ IMPORTANT: Keep this key SECRET and SECURE!
+
+═══════════════════════════════════════════════════════════════
+    STEP 1: Add to .env File
+═══════════════════════════════════════════════════════════════
+
+Open your .env file and add this line at the bottom:
+
+API_KEY=de9cc0578682fe54e2b7fc4702947a5080b57ce69bb002f45f18f688d283e4a4
+
+
+═══════════════════════════════════════════════════════════════
+    STEP 2: Clear Configuration Cache
+═══════════════════════════════════════════════════════════════
+
+Run this command:
+php artisan config:clear
+
+
+═══════════════════════════════════════════════════════════════
+    STEP 3: Test the API
+═══════════════════════════════════════════════════════════════
+
+Test with curl:
+
+curl -H "X-API-Key: de9cc0578682fe54e2b7fc4702947a5080b57ce69bb002f45f18f688d283e4a4" \
+     http://localhost:8000/api/categories
+
+
+═══════════════════════════════════════════════════════════════
+    PROTECTED ENDPOINTS
+═══════════════════════════════════════════════════════════════
+
+ALL API endpoints now require authentication:
+
+QURAN APIs (د آیات فایدی، د آیات تفسیر، د آیه لغات):
+  ✓ GET /api/ayah/{surah}/{ayah}
+  ✓ GET /api/ayah/{surah}/{ayah}/{type}
+  ✓ GET /api/section/{type}
+  ✓ GET /api/surah/{surah}/{type}
+  ✓ GET /api/surahs
+  ✓ GET /api/surah/{surah}
+
+CONTENT MANAGEMENT APIs:
+  ✓ GET /api/categories
+  ✓ GET /api/categories/{id}
+  ✓ GET /api/subcategories/{id}
+  ✓ GET /api/contents/{id}
+  ✓ GET /api/search
+
+
+═══════════════════════════════════════════════════════════════
+    FOR MOBILE APP DEVELOPERS
+═══════════════════════════════════════════════════════════════
+
+All API requests MUST include this header:
+
+Header Name:  X-API-Key
+Header Value: de9cc0578682fe54e2b7fc4702947a5080b57ce69bb002f45f18f688d283e4a4
+
+
+═══════════════════════════════════════════════════════════════
+    WHAT HAPPENS WITHOUT API KEY?
+═══════════════════════════════════════════════════════════════
+
+Response: 401 Unauthorized
+{
+  "success": false,
+  "message": "Unauthorized. Invalid or missing API key."
+}
+
+
+═══════════════════════════════════════════════════════════════
+    SECURITY NOTES
+═══════════════════════════════════════════════════════════════
+
+✓ API key is 64 characters (256-bit security)
+✓ Store in .env file (never commit to Git)
+✓ Share only with authorized developers
+✓ Use HTTPS in production
+✓ Regenerate if compromised
+
+═══════════════════════════════════════════════════════════════
+

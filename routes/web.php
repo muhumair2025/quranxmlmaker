@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuranXmlController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContentManagementController;
+use App\Http\Controllers\IconLibraryController;
 
 // Authentication Routes
 Route::middleware('guest')->group(function () {
@@ -47,6 +49,44 @@ Route::middleware(['auth', 'verify.otp'])->group(function () {
 
     // Download routes
     Route::get('/download/{type}/{filename}', [QuranXmlController::class, 'downloadXml'])->name('download.xml');
+
+    // Icon Library Routes
+    Route::prefix('icon-library')->name('icon-library.')->group(function () {
+        Route::get('/', [IconLibraryController::class, 'index'])->name('index');
+        Route::get('/create', [IconLibraryController::class, 'create'])->name('create');
+        Route::post('/', [IconLibraryController::class, 'store'])->name('store');
+        Route::delete('/{icon}', [IconLibraryController::class, 'destroy'])->name('destroy');
+    });
+
+    // Content Management Routes
+    Route::prefix('content-management')->name('content.')->group(function () {
+        // Dashboard
+        Route::get('/', [ContentManagementController::class, 'index'])->name('index');
+        
+        // Categories
+        Route::get('/categories', [ContentManagementController::class, 'categoriesIndex'])->name('categories.index');
+        Route::get('/categories/create', [ContentManagementController::class, 'categoriesCreate'])->name('categories.create');
+        Route::post('/categories', [ContentManagementController::class, 'categoriesStore'])->name('categories.store');
+        Route::get('/categories/{category}/edit', [ContentManagementController::class, 'categoriesEdit'])->name('categories.edit');
+        Route::put('/categories/{category}', [ContentManagementController::class, 'categoriesUpdate'])->name('categories.update');
+        Route::delete('/categories/{category}', [ContentManagementController::class, 'categoriesDestroy'])->name('categories.destroy');
+        
+        // Subcategories
+        Route::get('/subcategories', [ContentManagementController::class, 'subcategoriesIndex'])->name('subcategories.index');
+        Route::get('/subcategories/create', [ContentManagementController::class, 'subcategoriesCreate'])->name('subcategories.create');
+        Route::post('/subcategories', [ContentManagementController::class, 'subcategoriesStore'])->name('subcategories.store');
+        Route::get('/subcategories/{subcategory}/edit', [ContentManagementController::class, 'subcategoriesEdit'])->name('subcategories.edit');
+        Route::put('/subcategories/{subcategory}', [ContentManagementController::class, 'subcategoriesUpdate'])->name('subcategories.update');
+        Route::delete('/subcategories/{subcategory}', [ContentManagementController::class, 'subcategoriesDestroy'])->name('subcategories.destroy');
+        
+        // Contents
+        Route::get('/contents', [ContentManagementController::class, 'contentsIndex'])->name('contents.index');
+        Route::get('/contents/create', [ContentManagementController::class, 'contentsCreate'])->name('contents.create');
+        Route::post('/contents', [ContentManagementController::class, 'contentsStore'])->name('contents.store');
+        Route::get('/contents/{content}/edit', [ContentManagementController::class, 'contentsEdit'])->name('contents.edit');
+        Route::put('/contents/{content}', [ContentManagementController::class, 'contentsUpdate'])->name('contents.update');
+        Route::delete('/contents/{content}', [ContentManagementController::class, 'contentsDestroy'])->name('contents.destroy');
+    });
 
     // Admin Routes (require admin privileges)
     Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
