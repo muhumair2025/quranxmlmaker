@@ -50,6 +50,9 @@ Route::middleware(['api', 'api.key'])->group(function () {
     // Get single content item
     Route::get('/contents/{id}', [ContentApiController::class, 'getContent']);
     
+    // Get latest content across the system
+    Route::get('/latest', [ContentApiController::class, 'getLatest']);
+    
     // Search content
     Route::get('/search', [ContentApiController::class, 'search']);
 
