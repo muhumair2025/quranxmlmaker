@@ -62,48 +62,78 @@
                 <!-- Content Type -->
                 <div>
                     <label for="type" class="block text-sm font-medium text-gray-700 mb-2">Content Type *</label>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                         <label class="relative flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-green-500 transition-colors">
                             <input type="radio" name="type" value="text" class="hidden content-type-radio" required {{ old('type') === 'text' ? 'checked' : '' }}>
-                            <div class="flex items-center w-full">
-                                <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                            <div class="flex flex-col items-center w-full">
+                                <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-2">
                                     <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
                                     </svg>
                                 </div>
-                                <div>
-                                    <p class="font-medium text-gray-900">Text</p>
-                                    <p class="text-xs text-gray-500">Rich text content</p>
+                                <div class="text-center">
+                                    <p class="font-medium text-gray-900 text-sm">Text</p>
+                                    <p class="text-xs text-gray-500">Rich text</p>
                                 </div>
                             </div>
                         </label>
 
                         <label class="relative flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-green-500 transition-colors">
                             <input type="radio" name="type" value="qa" class="hidden content-type-radio" required {{ old('type') === 'qa' ? 'checked' : '' }}>
-                            <div class="flex items-center w-full">
-                                <div class="flex-shrink-0 w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                            <div class="flex flex-col items-center w-full">
+                                <div class="flex-shrink-0 w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-2">
                                     <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
                                 </div>
-                                <div>
-                                    <p class="font-medium text-gray-900">Q&A</p>
-                                    <p class="text-xs text-gray-500">Question & Answer</p>
+                                <div class="text-center">
+                                    <p class="font-medium text-gray-900 text-sm">Q&A</p>
+                                    <p class="text-xs text-gray-500">Question</p>
                                 </div>
                             </div>
                         </label>
 
                         <label class="relative flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-green-500 transition-colors">
                             <input type="radio" name="type" value="pdf" class="hidden content-type-radio" required {{ old('type') === 'pdf' ? 'checked' : '' }}>
-                            <div class="flex items-center w-full">
-                                <div class="flex-shrink-0 w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-3">
+                            <div class="flex flex-col items-center w-full">
+                                <div class="flex-shrink-0 w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mb-2">
                                     <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                                     </svg>
                                 </div>
-                                <div>
-                                    <p class="font-medium text-gray-900">PDF</p>
-                                    <p class="text-xs text-gray-500">PDF document</p>
+                                <div class="text-center">
+                                    <p class="font-medium text-gray-900 text-sm">PDF</p>
+                                    <p class="text-xs text-gray-500">Document</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="relative flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-green-500 transition-colors">
+                            <input type="radio" name="type" value="audio" class="hidden content-type-radio" required {{ old('type') === 'audio' ? 'checked' : '' }}>
+                            <div class="flex flex-col items-center w-full">
+                                <div class="flex-shrink-0 w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mb-2">
+                                    <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+                                    </svg>
+                                </div>
+                                <div class="text-center">
+                                    <p class="font-medium text-gray-900 text-sm">Audio</p>
+                                    <p class="text-xs text-gray-500">MP3/Audio</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="relative flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-green-500 transition-colors">
+                            <input type="radio" name="type" value="video" class="hidden content-type-radio" required {{ old('type') === 'video' ? 'checked' : '' }}>
+                            <div class="flex flex-col items-center w-full">
+                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mb-2">
+                                    <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <div class="text-center">
+                                    <p class="font-medium text-gray-900 text-sm">Video</p>
+                                    <p class="text-xs text-gray-500">MP4/Video</p>
                                 </div>
                             </div>
                         </label>
@@ -165,6 +195,28 @@
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                     <p class="mt-1 text-xs text-gray-500">Enter the full URL of your PDF file hosted on Backblaze B2 or any other CDN</p>
+                </div>
+
+                <!-- Audio URL (shown when type is audio) -->
+                <div id="audio_field" class="content-field" style="display:none;">
+                    <label for="audio_url" class="block text-sm font-medium text-gray-700 mb-2">Audio URL * (Backblaze or External URL)</label>
+                    <input type="url" id="audio_url" name="audio_url" value="{{ old('audio_url') }}" placeholder="https://f000.backblazeb2.com/file/bucket-name/audio.mp3"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 @error('audio_url') border-red-500 @enderror">
+                    @error('audio_url')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                    <p class="mt-1 text-xs text-gray-500">Enter the full URL of your audio file (MP3, M4A, etc.) hosted on Backblaze B2 or any other CDN</p>
+                </div>
+
+                <!-- Video URL (shown when type is video) -->
+                <div id="video_field" class="content-field" style="display:none;">
+                    <label for="video_url" class="block text-sm font-medium text-gray-700 mb-2">Video URL * (Backblaze or External URL)</label>
+                    <input type="url" id="video_url" name="video_url" value="{{ old('video_url') }}" placeholder="https://f000.backblazeb2.com/file/bucket-name/video.mp4"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 @error('video_url') border-red-500 @enderror">
+                    @error('video_url')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                    <p class="mt-1 text-xs text-gray-500">Enter the full URL of your video file (MP4, M3U8, etc.) hosted on Backblaze B2 or any other CDN</p>
                 </div>
 
                 <!-- Order -->
@@ -246,6 +298,10 @@ typeRadios.forEach(radio => {
             document.getElementById('qa_fields').style.display = 'block';
         } else if (this.value === 'pdf') {
             document.getElementById('pdf_field').style.display = 'block';
+        } else if (this.value === 'audio') {
+            document.getElementById('audio_field').style.display = 'block';
+        } else if (this.value === 'video') {
+            document.getElementById('video_field').style.display = 'block';
         }
     });
     

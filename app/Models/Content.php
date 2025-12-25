@@ -16,6 +16,8 @@ class Content extends Model
         'question',
         'answer',
         'pdf_url',
+        'audio_url',
+        'video_url',
         'order',
         'is_active'
     ];

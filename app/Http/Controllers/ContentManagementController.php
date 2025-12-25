@@ -107,11 +107,15 @@ class ContentManagementController extends Controller
     
     public function subcategoriesIndex()
     {
-        $subcategories = Subcategory::with('category')
-            ->withCount(['contents'])
+        // Group subcategories by category for collapsible view
+        $categories = Category::with(['activeSubcategories' => function ($query) {
+                $query->withCount(['contents'])->ordered();
+            }])
+            ->withCount(['activeSubcategories'])
             ->ordered()
             ->get();
-        return view('content-management.subcategories.index', compact('subcategories'));
+            
+        return view('content-management.subcategories.index', compact('categories'));
     }
 
     public function subcategoriesCreate()

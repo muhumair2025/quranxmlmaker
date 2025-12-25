@@ -142,6 +142,12 @@ class ContentApiController extends Controller
                     case 'pdf':
                         $contentData['pdf_url'] = $content->pdf_url;
                         break;
+                    case 'audio':
+                        $contentData['audio_url'] = $content->audio_url;
+                        break;
+                    case 'video':
+                        $contentData['video_url'] = $content->video_url;
+                        break;
                 }
 
                 return $contentData;
@@ -204,6 +210,12 @@ class ContentApiController extends Controller
                 break;
             case 'pdf':
                 $data['pdf_url'] = $content->pdf_url;
+                break;
+            case 'audio':
+                $data['audio_url'] = $content->audio_url;
+                break;
+            case 'video':
+                $data['video_url'] = $content->video_url;
                 break;
         }
 
@@ -271,6 +283,12 @@ class ContentApiController extends Controller
                         break;
                     case 'pdf':
                         $contentData['preview'] = 'PDF Document';
+                        break;
+                    case 'audio':
+                        $contentData['preview'] = 'Audio File';
+                        break;
+                    case 'video':
+                        $contentData['preview'] = 'Video File';
                         break;
                 }
 

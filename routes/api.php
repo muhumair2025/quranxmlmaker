@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\QuranApiController;
 use App\Http\Controllers\Api\ContentApiController;
+use App\Http\Controllers\Api\AppApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +52,15 @@ Route::middleware(['api', 'api.key'])->group(function () {
     
     // Search content
     Route::get('/search', [ContentApiController::class, 'search']);
+
+    // App Management API Routes
+    // Get hero slides for homepage
+    Route::get('/hero-slides', [AppApiController::class, 'getHeroSlides']);
+    
+    // Get splash screen image
+    Route::get('/splash-screen', [AppApiController::class, 'getSplashScreen']);
+    
+    // Get live videos
+    Route::get('/live-videos', [AppApiController::class, 'getLiveVideos']);
+    Route::get('/live-videos/current', [AppApiController::class, 'getCurrentLiveVideos']);
 });

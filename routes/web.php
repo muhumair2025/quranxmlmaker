@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContentManagementController;
 use App\Http\Controllers\IconLibraryController;
+use App\Http\Controllers\AppManagementController;
 
 // Authentication Routes
 Route::middleware('guest')->group(function () {
@@ -86,6 +87,33 @@ Route::middleware(['auth', 'verify.otp'])->group(function () {
         Route::get('/contents/{content}/edit', [ContentManagementController::class, 'contentsEdit'])->name('contents.edit');
         Route::put('/contents/{content}', [ContentManagementController::class, 'contentsUpdate'])->name('contents.update');
         Route::delete('/contents/{content}', [ContentManagementController::class, 'contentsDestroy'])->name('contents.destroy');
+    });
+
+    // App Management Routes (Hero Slides & Splash Screen)
+    Route::prefix('app-management')->name('app.')->group(function () {
+        // Dashboard
+        Route::get('/', [AppManagementController::class, 'index'])->name('index');
+        
+        // Hero Slides
+        Route::get('/hero-slides', [AppManagementController::class, 'heroIndex'])->name('hero.index');
+        Route::get('/hero-slides/create', [AppManagementController::class, 'heroCreate'])->name('hero.create');
+        Route::post('/hero-slides', [AppManagementController::class, 'heroStore'])->name('hero.store');
+        Route::get('/hero-slides/{slide}/edit', [AppManagementController::class, 'heroEdit'])->name('hero.edit');
+        Route::put('/hero-slides/{slide}', [AppManagementController::class, 'heroUpdate'])->name('hero.update');
+        Route::delete('/hero-slides/{slide}', [AppManagementController::class, 'heroDestroy'])->name('hero.destroy');
+        
+        // Splash Screen
+        Route::get('/splash-screen', [AppManagementController::class, 'splashIndex'])->name('splash.index');
+        Route::post('/splash-screen', [AppManagementController::class, 'splashUpdate'])->name('splash.update');
+        Route::delete('/splash-screen', [AppManagementController::class, 'splashDelete'])->name('splash.delete');
+        
+        // Live Videos
+        Route::get('/live-videos', [AppManagementController::class, 'liveIndex'])->name('live.index');
+        Route::get('/live-videos/create', [AppManagementController::class, 'liveCreate'])->name('live.create');
+        Route::post('/live-videos', [AppManagementController::class, 'liveStore'])->name('live.store');
+        Route::get('/live-videos/{video}/edit', [AppManagementController::class, 'liveEdit'])->name('live.edit');
+        Route::put('/live-videos/{video}', [AppManagementController::class, 'liveUpdate'])->name('live.update');
+        Route::delete('/live-videos/{video}', [AppManagementController::class, 'liveDestroy'])->name('live.destroy');
     });
 
     // Admin Routes (require admin privileges)

@@ -10,8 +10,9 @@
         <p class="text-gray-600 text-base sm:text-lg">Create XML files for audio, video and text content of Quranic verses</p>
     </div>
 
-    <!-- Content Management Card -->
-    <div class="mb-8">
+    <!-- Quick Access Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <!-- Content Management Card -->
         <a href="{{ route('content.index') }}" class="block bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all duration-200 overflow-hidden group">
             <div class="p-5">
                 <div class="flex items-center justify-between">
@@ -23,10 +24,32 @@
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold text-gray-900 group-hover:text-green-600 transition-colors">Content Management</h3>
-                            <p class="text-sm text-gray-500 mt-0.5">Manage categories, subcategories, and content for your app</p>
+                            <p class="text-sm text-gray-500 mt-0.5">Categories & content</p>
                         </div>
                     </div>
                     <svg class="w-5 h-5 text-gray-400 group-hover:text-green-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </div>
+            </div>
+        </a>
+
+        <!-- App Management Card (NEW) -->
+        <a href="{{ route('app.index') }}" class="block bg-white rounded-lg border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all duration-200 overflow-hidden group">
+            <div class="p-5">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">App Management</h3>
+                            <p class="text-sm text-gray-500 mt-0.5">Hero slides & splash screen</p>
+                        </div>
+                    </div>
+                    <svg class="w-5 h-5 text-gray-400 group-hover:text-purple-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </div>
