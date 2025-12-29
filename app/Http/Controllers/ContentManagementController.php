@@ -198,12 +198,14 @@ class ContentManagementController extends Controller
     {
         $validated = $request->validate([
             'subcategory_id' => 'required|exists:subcategories,id',
-            'type' => 'required|in:text,qa,pdf',
+            'type' => 'required|in:text,qa,pdf,audio,video',
             'title' => 'required|string|max:255',
             'text_content' => 'required_if:type,text|nullable|string',
             'question' => 'required_if:type,qa|nullable|string',
             'answer' => 'required_if:type,qa|nullable|string',
             'pdf_url' => 'required_if:type,pdf|nullable|url|max:500',
+            'audio_url' => 'required_if:type,audio|nullable|url|max:500',
+            'video_url' => 'required_if:type,video|nullable|url|max:500',
             'order' => 'nullable|integer',
             'is_active' => 'boolean'
         ]);
@@ -228,12 +230,14 @@ class ContentManagementController extends Controller
     {
         $validated = $request->validate([
             'subcategory_id' => 'required|exists:subcategories,id',
-            'type' => 'required|in:text,qa,pdf',
+            'type' => 'required|in:text,qa,pdf,audio,video',
             'title' => 'required|string|max:255',
             'text_content' => 'required_if:type,text|nullable|string',
             'question' => 'required_if:type,qa|nullable|string',
             'answer' => 'required_if:type,qa|nullable|string',
             'pdf_url' => 'required_if:type,pdf|nullable|url|max:500',
+            'audio_url' => 'required_if:type,audio|nullable|url|max:500',
+            'video_url' => 'required_if:type,video|nullable|url|max:500',
             'order' => 'nullable|integer',
             'is_active' => 'boolean'
         ]);
